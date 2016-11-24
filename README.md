@@ -1,2 +1,9 @@
-# JzFileDownloadManager
-A File Downloader
+# **JzDownloader**
+
+## **简介**
+文件下载器，可下载图片、文件等
+
+待补充
+
+
+
