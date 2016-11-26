@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *const QRImageKey       = @"QRImage";
+static NSString *const QRImageKey       = @"QRImage";       
 static NSString *const ConfigFileKey   = @"ConfigFile";
 
-@protocol JzDownloader;
+@protocol JzDownloaderDelegate;
 
 @interface JzDownloader : NSObject
 
-@property (nonatomic, weak) id<JzDownloader> delegate;
+@property (nonatomic, weak) id<JzDownloaderDelegate> delegate;
 
 + (instancetype)sharedInstance;
 
@@ -30,7 +30,7 @@ static NSString *const ConfigFileKey   = @"ConfigFile";
 
 @end
 
-@protocol JzDownloader <NSObject>
+@protocol JzDownloaderDelegate <NSObject>
 
 @optional
 - (void)downloadSuccessWithFilePath:(NSString *)filePath andKey:(NSString *)fileKey;

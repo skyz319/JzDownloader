@@ -46,6 +46,17 @@
 
 @implementation JzDownloader
 
+- (instancetype)init {
+    
+    self = [super init];
+    
+    if (!self) {
+        return nil;
+    }
+    
+    return self;
+}
+
 + (instancetype)sharedInstance {
     
     static JzDownloader *instance = nil;
@@ -82,7 +93,7 @@
         });
     } else {
         //  文件不存在 需下载文件
-        
+        [self downladFileWithUrl: urlString andKey: fileKey];
     }
     
 }
@@ -112,14 +123,10 @@
                                                                 //默认存储到临时文件夹 tmp 中，需要剪切文件到 cache
                                                                 NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];
                                                                 
-                                                                
                                                                 NSError *saveError = nil;
                                                                 
                                                                 //  存储文件
-                                                                [[NSFileManager defaultManager]
-                                                                 moveItemAtURL: location
-                                                                 toURL: [NSURL URLWithString: filePath]
-                                                                 error: &saveError];
+                                                                [[NSFileManager defaultManager] moveItemAtURL:location toURL:[NSURL fileURLWithPath:filePath] error: &saveError];
                                                                 
                                                                 if (saveError) {
                                                                     //  存储失败
